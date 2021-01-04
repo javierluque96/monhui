@@ -1,0 +1,11 @@
+CREATE DATABASE monhui;
+USE monhui;
+
+CREATE TABLE mountain (
+  id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(140) NOT NULL,
+  height INT(4) NOT NULL, 
+  location VARCHAR(255) NOT NULL,
+  description VARCHAR(255),
+  image VARCHAR(255)
+);
