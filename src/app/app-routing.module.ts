@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'mountains', component: MountainListComponent },
   { path: 'mountains/add', component: MountainFormComponent },
   { path: 'mountains/edit/:id', component: MountainFormComponent },
-  // { path: '**', component: PageNotFoundComponent },
+  { path: '**', redirectTo: '/mountains', pathMatch: 'full' },
 ];
 
 @NgModule({

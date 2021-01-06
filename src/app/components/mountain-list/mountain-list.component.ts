@@ -22,4 +22,14 @@ export class MountainListComponent implements OnInit {
       (err) => console.error(err)
     );
   }
+
+  deleteGame(id: string) {
+    this.mountainsService.deleteMountain(id).subscribe(
+      (res) => {
+        this.getMountains();
+        console.log(res);
+      },
+      (err) => console.error(err)
+    );
+  }
 }
