@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-4 mt-5" *ngFor="let mountain of mountains">
+    <div class="card text-center">
+      <div class="card-header bg-dark d-flex align-items-center justify-content-between">
+        <h4 class="text-white my-3">{{mountain.name}}</h4>
+        <a [routerLink]="['/mountains/delete', mountain.id]" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+      </div>
+      <img [src]="mountain.image" alt="Mountain image" class="card-img-top" *ngIf="mountain.image">
+      <div class="card-body">
+        <p>Height: {{mountain.height}}</p>
+        <ng-template [ngIf]="mountain.description">
+          <h6>Description</h6>
+          <p>{{mountain.description}}</p>
+        </ng-template>
+      </div>
+      <a [routerLink]="['/mountains/edit', mountain.id]" class="btn btn-info btn-block">Update Mountain</a>
+    </div>
+  </div>
+</div>
