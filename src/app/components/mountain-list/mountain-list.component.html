@@ -3,7 +3,7 @@
     <div class="card text-justify">
       <div class="card-header bg-dark d-flex align-items-center justify-content-between">
         <h4 class="text-white my-3">{{mountain.name}}</h4>
-        <button  class="btn btn-danger" (click)="deleteGame(mountain.id)"><i class="far fa-trash-alt"></i></button>
+        <button  class="btn btn-danger" (click)="deleteMountain(mountain.id)"><i class="far fa-trash-alt"></i></button>
       </div>
       <img [src]="mountain.image" alt="Mountain image" class="card-img-top" *ngIf="mountain.image">
       <div class="card-body">

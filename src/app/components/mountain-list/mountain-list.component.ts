@@ -23,7 +23,7 @@ export class MountainListComponent implements OnInit {
     );
   }
 
-  deleteGame(id: string) {
+  deleteMountain(id: string) {
     this.mountainsService.deleteMountain(id).subscribe(
       (res) => {
         this.getMountains();
