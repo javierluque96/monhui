@@ -5,7 +5,7 @@
      * Variables:
      * id, name, height, location, description, image
      */
-    class Mountain
+    class Mountain implements JsonSerializable
     {
         private ?int $id;
         private string $name;
@@ -24,6 +24,18 @@
             $this->image = $image;
         }
         
+        public function jsonSerialize(): array
+        {
+            return [
+                'id' => $this->id,
+                'name' => $this->name,
+                'height' => $this->height,
+                'location' => $this->location,
+                'description' => $this->description,
+                'image' => $this->image
+            ];
+        }
+
         /**
          * getAll
          *
@@ -32,33 +44,15 @@
         public static function getAll(): array
         {
             $conn = Database::getDatabase();
-
             $conn->prepare("SELECT * FROM mountain");
-            
             $mountains = $conn->getAllObjects();
+
             if (! $mountains) {
                 $mountains = ["There aren't mountains in the database"];
             }
+            
             return $mountains;
         }
-            
-        /**
-         * getOne
-         *
-         * @param  string|int $id
-         * @return array
-         */
-        public static function getOne($id): array
-        {
-            $conn = Database::getDatabase();
-            $conn->prepare("SELECT * FROM mountain WHERE id = ?", [$id]);
-            $mountain = $conn->getRow();
-            if (! $mountain) {
-                $mountain = ["This mountain does not exist"];
-            }
-
-            return $mountain;
-        }
 
         /**
          * getOne
@@ -66,15 +60,13 @@
          * @param  string|int $id
          * @return array
          */
-        public static function getOneMountain($id): Mountain
+        public static function getOne($id): Mountain
         {
             $conn = Database::getDatabase();
             $conn->prepare("SELECT * FROM mountain WHERE id = ?", [$id]);
             $data = $conn->getRow();
             $mountain = new Mountain($id, $data["name"], $data["height"], $data["location"], $data["description"], $data["image"]);
             
-            print_r($mountain);
-
             if (! $mountain) {
                 $mountain = ["This mountain does not exist"];
             }
@@ -110,7 +102,7 @@
             $conn = Database::getDatabase();
             try {
                 $conn->prepare("DELETE FROM mountain WHERE id = ?", [$id]);
-            } catch(Error $e) {
+            } catch (Error $e) {
                 echo "Delete failed: $e";
             }
         }
