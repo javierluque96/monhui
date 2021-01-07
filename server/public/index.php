@@ -19,6 +19,13 @@ $app->get('/', function (Request $request, Response $response, array $args) {
 });
 
 $app->group('/api', function (RouteCollectorProxy $group) {
+    $group->options('/mountains', function (Request $request, Response $response): Response {
+        return $response;
+    });
+    $group->options('/mountains/{id}', function (Request $request, Response $response): Response {
+        return $response;
+    });
+
     $group->get('/mountains', function (Request $request, Response $response, array $args) {
         $mountains = Mountain::getAll();
         $response->getBody()->write(json_encode($mountains));
@@ -79,10 +86,6 @@ $app->group('/api', function (RouteCollectorProxy $group) {
     
     
         $response->getBody()->write(json_encode($text));
-        return $response;
-    });
-    
-    $group->options('/mountains/{id}', function (Request $request, Response $response): Response {
         return $response;
     });
     

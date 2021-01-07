@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Mountain } from '../../models/Mountain';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MountainsService } from 'src/app/services/mountains.service';
-import { log } from 'console';
 
 @Component({
   selector: 'app-mountain-form',
